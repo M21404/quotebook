@@ -83,7 +83,7 @@
   let names = null;
   let answer = null;
   let answerIdx = null;
-  const arrayN = [];
+  let arrayN = [];
 
   async function renderQuote() {
     fixColoring();
@@ -91,7 +91,7 @@
       .then(res => res.json())
       .then(N => {
 	if(arrayN.length == N) { arrayN = []; }
-        const rint = Math.floor(Math.random()*N);
+        let rint = Math.floor(Math.random()*N);
 	while(arrayN.indexOf(rint) != -1) { rint = Math.floor(Math.random()*N); }
 	arrayN.push(rint);
         fetch(database_url + 'star/quotes/' + rint + '.json')
