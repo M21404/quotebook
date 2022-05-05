@@ -71,7 +71,7 @@
       </div>
     </div>
     <div class="options">
-	    <button onclick="renderQuote()">Reset!</button>
+	    <button class="reset" onclick="renderQuote()">Reset!</button>
     </div>
     <script src="resources/public/js/compiled/quotebook.js" type="text/javascript"></script>
   </body>
@@ -112,10 +112,10 @@
 
             const quoteP = document.getElementById('quote');
             quoteP.innerHTML = text;
-
-            const top_left_embed = document.getElementById('top-left');
-            top_left_embed.setAttribute('src','resources/public/css/themes/leaves-animation.svg');
-
+            
+            const top_left_embed = document.getElementById("top-left");
+            top_left_embed.setAttribute("src","resources/public/css/themes/leaves-animation.svg");
+	
             if (names === null) {
               names = (await getNames()).filter(it => it !== null).map(fixCitation)
             }

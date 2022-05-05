@@ -1,6 +1,6 @@
 # quotebook
 
-Quotebook for M21404
+Quotebook for M21404/M22504
 
 ## Overview
 
@@ -9,6 +9,7 @@ Contributions welcome. Keywords are 'Transcendental, Irreverence, sensuality, mo
 ## To-do
 
 - [x] Implement quote scraping in Shirator
+- [x] Reset Button (yet to be styled)
 - [x] Finish theme css loading framework to make it easier to create themes
 - [ ] Add Quil/Processing animations
 - [ ] Blissful sound bites
