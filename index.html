@@ -71,6 +71,9 @@
         </a>
       </div>
     </div>
+    <div class="options">
+	    <button class="reset" onclick="renderQuote()">Reset!</button>
+    </div>
     <script src="resources/public/js/compiled/quotebook.js" type="text/javascript"></script>
   </body>
 </html>
@@ -81,12 +84,17 @@
   let names = null;
   let answer = null;
   let answerIdx = null;
+  let arrayN = [];
 
   async function renderQuote() {
+    fixColoring();
     fetch(database_url + 'star/N.json')
       .then(res => res.json())
       .then(N => {
-        const rint = Math.floor(Math.random()*N);
+	if(arrayN.length == N) { arrayN = []; }
+        let rint = Math.floor(Math.random()*N);
+	while(arrayN.indexOf(rint) != -1) { rint = Math.floor(Math.random()*N); }
+	arrayN.push(rint);
         fetch(database_url + 'star/quotes/' + rint + '.json')
           .then(res => res.json())
           .then(async res => {
@@ -105,10 +113,10 @@
 
             const quoteP = document.getElementById('quote');
             quoteP.innerHTML = text;
-
-            const top_left_embed = document.getElementById('top-left');
-            top_left_embed.setAttribute('src','resources/public/css/themes/leaves-animation.svg');
-
+            
+            const top_left_embed = document.getElementById("top-left");
+            top_left_embed.setAttribute("src","resources/public/css/themes/leaves-animation.svg");
+	
             if (names === null) {
               names = (await getNames()).filter(it => it !== null).map(fixCitation)
             }
@@ -148,6 +156,14 @@
     // const resultBox = document.getElementById('resultBox');
     // resultBox.style.display = 'block'
   }
+
+   function fixColoring() {
+      for(let i=1;i<=4; i++) {
+	   const optionSelected = document.getElementById(`option${i}-box`);
+	   optionSelected.style.backgroundColor ='#fbf1c7';
+	   optionSelected.style.boxShadow = '2px 2px 6px #fbf1c7';
+      }
+   }
 
   function getNames() {
     return fetch(database_url + 'star/names.json')
